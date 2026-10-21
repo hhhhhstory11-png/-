@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>별의 밝기 탐구실 · 중2 과학</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B1026; --ink-2:#141B3C; --ink-3:#1E2750;
+  --paper:#F5F7FC; --paper-2:#FFFFFF;
+  --line-d:rgba(255,255,255,.14); --line-l:#DDE2EE;
+  --dim:#98A2C8; --gold:#FFC857; --blue:#9DB4FF;
+  --white-s:#E8EEFF; --orange:#FFB067; --coral:#FF7A59; --ok:#4ECBA0;
+  --serif:'Gowun Batang',serif;
+  --sans:'Noto Sans KR',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--ink);color:var(--white-s);font-family:var(--sans);
+  font-size:16px;line-height:1.7;-webkit-text-size-adjust:100%}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px 72px}
+
+header{position:relative;overflow:hidden;padding:48px 0 34px;text-align:center}
+#stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.eyebrow{position:relative;font-family:var(--mono);font-size:12px;letter-spacing:.22em;
+  color:var(--gold);text-transform:uppercase;margin:0 0 12px}
+h1{position:relative;font-family:var(--serif);font-weight:700;
+  font-size:clamp(28px,6vw,42px);line-height:1.25;margin:0 0 10px;color:#fff}
+.sub{position:relative;margin:0;color:var(--dim);font-size:14.5px}
+
+nav.tabs{display:flex;gap:4px;margin:0 0 24px;padding:5px;
+  background:var(--ink-2);border:1px solid var(--line-d);border-radius:14px}
+nav.tabs button{flex:1;padding:11px 4px;border:0;border-radius:10px;cursor:pointer;
+  background:transparent;color:var(--dim);font-family:var(--sans);
+  font-size:14px;font-weight:500;transition:background .18s,color .18s}
+nav.tabs button:hover{color:var(--white-s)}
+nav.tabs button[aria-selected="true"]{background:var(--gold);color:#241A00;font-weight:700}
+nav.tabs button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+section[role="tabpanel"][hidden]{display:none}
+
+.card{background:var(--paper);color:#101632;border-radius:16px;padding:24px;margin:0 0 18px}
+.card.dark{background:var(--ink-2);color:var(--white-s);border:1px solid var(--line-d)}
+h2{font-family:var(--serif);font-size:21px;font-weight:700;margin:0 0 6px;line-height:1.35}
+h3{font-size:14.5px;font-weight:700;margin:22px 0 10px}
+h3:first-child{margin-top:0}
+.lede{margin:0 0 16px;font-size:14.5px;color:#4A5375}
+.card.dark .lede{color:var(--dim)}
+.step{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  color:#8A93B4;margin:0 0 4px}
+.card.dark .step{color:var(--dim)}
+
+.chips{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;background:#E9EDF6;border-radius:10px}
+.card.dark .chips{background:var(--ink-3)}
+.chips button{padding:7px 13px;border:0;border-radius:7px;background:transparent;cursor:pointer;
+  color:#5A6488;font-family:var(--sans);font-size:13.5px;font-weight:500}
+.card.dark .chips button{color:var(--dim)}
+.chips button[aria-pressed="true"]{background:var(--paper-2);color:#101632;font-weight:700}
+.card.dark .chips button[aria-pressed="true"]{background:var(--gold);color:#241A00}
+.chips button:focus-visible{outline:2px solid #4A6FE3;outline-offset:1px}
+.fieldrow{margin:0 0 16px}
+.fieldrow>label{display:block;font-size:13px;font-weight:700;color:#5A6488;margin:0 0 7px}
+.card.dark .fieldrow>label{color:var(--dim)}
+input.text{width:100%;padding:11px 13px;border:1px solid var(--line-l);border-radius:9px;
+  font-family:var(--sans);font-size:15px;background:var(--paper-2);color:#101632}
+input.text:focus{outline:2px solid #4A6FE3;outline-offset:-1px;border-color:transparent}
+.card.dark input.text{background:var(--ink);border-color:var(--line-d);color:var(--white-s)}
+
+table.data{width:100%;border-collapse:collapse;font-family:var(--mono)}
+table.data th{font-family:var(--sans);font-size:11.5px;font-weight:700;color:#5A6488;
+  text-align:center;padding:0 4px 8px;border-bottom:1px solid var(--line-l)}
+table.data th:first-child{text-align:left}
+table.data td{padding:5px 3px}
+table.data input{width:100%;padding:9px 6px;border:1px solid var(--line-l);border-radius:8px;
+  font-family:var(--mono);font-size:14.5px;background:var(--paper-2);color:#101632;text-align:center}
+table.data input:focus{outline:2px solid #4A6FE3;outline-offset:-1px;border-color:transparent}
+td.dist{font-family:var(--mono);font-size:14.5px;font-weight:500;padding-left:4px;white-space:nowrap}
+td.avg{font-family:var(--mono);font-size:14.5px;font-weight:500;text-align:center;color:#2A78D6}
+td.del{width:34px;padding-left:0}
+button.x{width:28px;height:28px;border:0;border-radius:7px;background:#E9EDF6;
+  color:#7A84A8;cursor:pointer;font-size:16px;line-height:1;padding:0}
+button.x:hover{background:#DCE2F0;color:#101632}
+button.x:disabled{opacity:.3;cursor:default}
+button.x:focus-visible{outline:2px solid #4A6FE3;outline-offset:1px}
+table.data input.dist-in{font-weight:500;color:#232C4E}
+
+.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+button.btn{padding:10px 16px;border-radius:9px;border:1px solid #C9D1E4;background:var(--paper-2);
+  color:#232C4E;font-family:var(--sans);font-size:14px;font-weight:500;cursor:pointer}
+button.btn:hover{background:#EDF1F9}
+button.btn.primary{background:#232C4E;border-color:#232C4E;color:#fff}
+button.btn.primary:hover{background:#101632}
+button.btn:disabled{opacity:.5;cursor:default}
+button.btn:focus-visible{outline:2px solid #4A6FE3;outline-offset:2px}
+.card.dark button.btn{background:var(--ink-3);border-color:var(--line-d);color:var(--white-s)}
+.card.dark button.btn:hover{background:#28336A}
+.card.dark button.btn.primary{background:var(--gold);border-color:var(--gold);color:#241A00;font-weight:700}
+
+svg.chart{width:100%;height:auto;display:block;background:var(--paper-2);border-radius:12px}
+.card.dark svg.chart{background:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:12px 0 0;font-size:12.5px;color:#5A6488}
+.card.dark .legend{color:var(--dim)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:14px;height:3px;border-radius:2px;display:inline-block}
+
+.verdict{margin:16px 0 0;padding:15px 17px;border-radius:12px;font-size:14px}
+.verdict.good{background:#E4F6EE;color:#0D4F38}
+.verdict.warn{background:#FFF2DE;color:#5A3D00}
+.verdict.none{background:#EDF1F9;color:#5A6488}
+.verdict strong{display:block;margin:0 0 6px;font-size:14.5px}
+.verdict ul{margin:8px 0 0;padding-left:18px}
+.verdict li{margin:3px 0}
+.mono{font-family:var(--mono)}
+
+.qbox{border-top:1px solid var(--line-l);padding:18px 0 0;margin:18px 0 0}
+.qbox:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.qlab{font-size:14.5px;font-weight:500;margin:0 0 9px;line-height:1.6}
+.qlab .n{font-family:var(--mono);font-size:12px;color:#8A93B4;margin-right:7px}
+textarea.ans{width:100%;min-height:74px;padding:11px 13px;border:1px solid var(--line-l);
+  border-radius:9px;font-family:var(--sans);font-size:14.5px;line-height:1.6;
+  background:var(--paper-2);color:#101632;resize:vertical}
+textarea.ans:focus{outline:2px solid #4A6FE3;outline-offset:-1px;border-color:transparent}
+.numline{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.numline input{width:110px;padding:10px 12px;border:1px solid var(--line-l);border-radius:9px;
+  font-family:var(--mono);font-size:15px;background:var(--paper-2);color:#101632;text-align:center}
+.numline .unit{font-size:14px;color:#5A6488}
+.fb{margin:9px 0 0;padding:10px 13px;border-radius:9px;font-size:13.5px;line-height:1.6}
+.fb.ok{background:#E4F6EE;color:#0D4F38}
+.fb.no{background:#FFF2DE;color:#5A3D00}
+
+.status{margin:14px 0 0;padding:13px 16px;border-radius:11px;font-size:13.5px;line-height:1.6}
+.status.ok{background:#E4F6EE;color:#0D4F38}
+.status.err{background:#FDECE7;color:#7A2A12}
+.status.info{background:#EDF1F9;color:#3A4468}
+.card.dark .status.info{background:var(--ink-3);color:var(--dim)}
+.codebox{width:100%;min-height:70px;margin:10px 0 0;padding:11px;border:1px solid var(--line-l);
+  border-radius:9px;font-family:var(--mono);font-size:12px;background:var(--paper-2);
+  color:#3A4468;resize:vertical;word-break:break-all}
+
+.tgrid{display:grid;grid-template-columns:44px repeat(6,1fr);gap:6px;margin:14px 0 0}
+.tgrid .hd{font-family:var(--mono);font-size:11px;color:var(--dim);
+  display:flex;align-items:center;justify-content:center;min-height:26px}
+.cell{border:1px solid var(--line-d);border-radius:9px;background:var(--ink-3);
+  padding:8px 4px;text-align:center;cursor:pointer;min-height:52px;
+  display:flex;flex-direction:column;justify-content:center;gap:2px}
+.cell.empty{background:transparent;border-style:dashed;opacity:.45;cursor:default}
+.cell.done{background:#173A2E;border-color:#2E7A5D}
+.cell.part{background:#3D3115;border-color:#8A6A1E}
+.cell .st{font-size:11px;color:var(--dim);line-height:1.3}
+.cell.done .st{color:#8FE3C2}
+.cell.part .st{color:#FFD98A}
+.cell .nm{font-size:11.5px;color:var(--white-s);line-height:1.3;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cell[aria-current="true"]{outline:2px solid var(--gold);outline-offset:1px}
+
+.tmeta{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 14px;font-size:13px;color:var(--dim)}
+.tmeta b{color:var(--white-s);font-weight:500}
+.qa{margin:0 0 12px;padding:13px 15px;background:var(--ink-3);border-radius:11px;
+  border:1px solid var(--line-d)}
+.qa .qq{font-size:12.5px;color:var(--dim);margin:0 0 5px;line-height:1.5}
+.qa .aa{font-size:14.5px;margin:0;line-height:1.65;white-space:pre-wrap}
+.qa .aa.blank{color:#6B7398;font-style:italic}
+table.mini{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13.5px;margin:0 0 14px}
+table.mini th{font-family:var(--sans);font-size:11.5px;color:var(--dim);font-weight:700;
+  text-align:center;padding:0 6px 7px;border-bottom:1px solid var(--line-d)}
+table.mini td{padding:7px 6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)}
+
+svg.ruler{width:100%;height:auto;display:block;overflow:visible}
+svg.spread{width:100%;height:auto;display:block}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 0}
+.stat{background:var(--ink-3);border:1px solid var(--line-d);border-radius:12px;
+  padding:14px 10px;text-align:center}
+.stat .v{display:block;font-family:var(--serif);font-size:clamp(18px,4.2vw,24px);
+  font-weight:700;color:var(--gold);line-height:1.3}
+.stat .k{display:block;font-size:11.5px;color:var(--dim);margin:4px 0 0}
+@media(max-width:620px){
+  .stat3{grid-template-columns:1fr;gap:8px}
+  .stat{display:flex;align-items:baseline;justify-content:space-between;
+    text-align:left;padding:11px 14px}
+  .stat .k{margin:0}
+}
+.star-dot{cursor:pointer;transition:cx .7s cubic-bezier(.45,.05,.3,1),r .7s cubic-bezier(.45,.05,.3,1)}
+.star-lbl{transition:x .7s cubic-bezier(.45,.05,.3,1);cursor:pointer}
+.star-tick{transition:x1 .7s cubic-bezier(.45,.05,.3,1),x2 .7s cubic-bezier(.45,.05,.3,1)}
+@media (prefers-reduced-motion:reduce){.star-dot,.star-lbl,.star-tick{transition:none}}
+.detail{margin:16px 0 0;padding:16px 18px;background:var(--ink-3);border-radius:12px;
+  border:1px solid var(--line-d);font-size:14px}
+.detail .name{font-family:var(--serif);font-size:19px;font-weight:700;color:#fff;margin:0 0 8px}
+.detail dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0;font-size:14px}
+.detail dt{color:var(--dim)}
+.detail dd{margin:0;font-family:var(--mono)}
+.detail p{margin:10px 0 0;color:var(--dim);font-size:13.5px;line-height:1.6}
+
+.sliderow{display:flex;align-items:center;gap:14px;margin:0 0 12px}
+.sliderow label{font-size:14px;min-width:104px;color:var(--dim)}
+input[type=range]{flex:1;accent-color:var(--gold);height:24px}
+.readout{font-family:var(--mono);font-size:15px;min-width:52px;text-align:right;font-weight:500}
+.result{margin:14px 0 0;padding:18px;border-radius:12px;background:var(--ink-3);
+  border:1px solid var(--line-d);text-align:center}
+.result .big{font-family:var(--serif);font-size:clamp(24px,5.5vw,34px);font-weight:700;
+  color:var(--gold);display:block;line-height:1.3}
+.result .cap{font-size:13.5px;color:var(--dim);margin:4px 0 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.numin{width:100%;padding:10px;border:1px solid var(--line-d);border-radius:9px;
+  background:var(--ink);color:var(--white-s);font-family:var(--mono);font-size:15px}
+.numin:focus{outline:2px solid var(--blue);outline-offset:-1px}
+.numlbl{font-size:12.5px;color:var(--dim);display:block;margin:0 0 5px}
+
+.q{border-top:1px solid var(--line-l);padding:20px 0 4px}
+.q:first-of-type{border-top:0;padding-top:0}
+.qnum{font-family:var(--mono);font-size:12px;color:#8A93B4;letter-spacing:.1em}
+.qtext{font-size:15px;font-weight:500;margin:4px 0 12px;line-height:1.6}
+.badge{display:inline-block;padding:1px 8px;border-radius:20px;background:#FFF2DE;
+  color:#7A5200;font-size:11px;font-weight:700;margin-left:6px;vertical-align:2px}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opts button{text-align:left;padding:12px 14px;border:1px solid var(--line-l);border-radius:10px;
+  background:var(--paper-2);color:#232C4E;font-family:var(--sans);font-size:14.5px;
+  cursor:pointer;line-height:1.5}
+.opts button:hover:not(:disabled){border-color:#8E9AC4;background:#F0F3FA}
+.opts button:disabled{cursor:default}
+.opts button.right{background:#E4F6EE;border-color:#4ECBA0;color:#0D4F38;font-weight:500}
+.opts button.wrong{background:#FDECE7;border-color:#FF7A59;color:#7A2A12}
+.opts button:focus-visible{outline:2px solid #4A6FE3;outline-offset:2px}
+.why{margin:11px 0 0;padding:12px 14px;background:#EDF1F9;border-radius:10px;
+  font-size:13.5px;color:#3A4468;line-height:1.6}
+.score{margin:22px 0 0;padding:20px;border-radius:12px;background:#232C4E;color:#fff;text-align:center}
+.score .big{font-family:var(--serif);font-size:32px;font-weight:700;display:block;color:var(--gold)}
+
+#errBanner{background:#FDECE7;color:#7A2A12;padding:14px 20px;font-size:14px;
+  line-height:1.6;font-family:var(--mono);word-break:break-word}
+#errBanner[hidden]{display:none}
+.foot{text-align:center;color:#5B6490;font-size:12.5px;margin:34px 0 0;line-height:1.8}
+
+@media (max-width:620px){
+  .wrap{padding:0 13px 56px}
+  .card{padding:18px 14px}
+  nav.tabs button{font-size:12.5px;padding:10px 2px}
+  .grid2{grid-template-columns:1fr}
+  .sliderow{flex-wrap:wrap}
+  .sliderow label{min-width:100%}
+  .tgrid{grid-template-columns:34px repeat(3,1fr)}
+  table.data input{font-size:13.5px;padding:8px 3px}
+  td.dist{font-size:13px}
+}
+</style>
+</head>
+<body>
+
+<div id="errBanner" hidden></div>
+<script>
+/* 문제가 생기면 화면에 그대로 보여 줍니다. 이 조각은 가장 먼저 실행됩니다. */
+(function(){
+  function show(msg){
+    var b=document.getElementById('errBanner');
+    if(!b)return;
+    b.hidden=false;
+    b.textContent='앱을 실행하지 못했습니다 · '+msg;
+  }
+  window.__stellarError=show;
+  window.addEventListener('error',function(e){
+    show((e.message||'알 수 없는 오류')+(e.lineno?' (줄 '+e.lineno+')':''));
+  });
+})();
+</script>
+
+<header>
+  <svg id="stars" aria-hidden="true"></svg>
+  <div class="wrap">
+    <p class="eyebrow">Ⅷ. 별과 우주 · 별의 밝기와 등급</p>
+    <h1>별의 밝기 탐구실</h1>
+    <p class="sub">모둠이 측정한 빛의 세기를 그래프로 바꾸고, 별의 등급까지 이어서 살펴봅니다.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="tabs" role="tablist" aria-label="화면 선택">
+  <button role="tab" id="t1" aria-controls="p1" aria-selected="true">모둠 활동</button>
+  <button role="tab" id="t2" aria-controls="p2" aria-selected="false">별의 등급</button>
+  <button role="tab" id="t3" aria-controls="p3" aria-selected="false">확인 문제</button>
+  <button role="tab" id="t4" aria-controls="p4" aria-selected="false">교사용</button>
+</nav>
+
+<!-- ================= PANEL 1 ================= -->
+<section role="tabpanel" id="p1" aria-labelledby="t1">
+
+  <div class="card">
+    <p class="step">1단계</p>
+    <h2>우리 모둠</h2>
+    <p class="lede">반과 모둠을 고르고 모둠원 이름을 적습니다. 이미 저장한 자료가 있으면 자동으로 불러옵니다.</p>
+    <div class="fieldrow">
+      <label id="lblCls">반</label>
+      <div class="chips" role="group" aria-labelledby="lblCls" id="clsChips"></div>
+    </div>
+    <div class="fieldrow">
+      <label id="lblGrp">모둠</label>
+      <div class="chips" role="group" aria-labelledby="lblGrp" id="grpChips"></div>
+    </div>
+    <div class="fieldrow">
+      <label for="members">모둠원 이름</label>
+      <input class="text" type="text" id="members" placeholder="예) 김서연, 박지호, 이하람, 최민준">
+    </div>
+    <div class="status info" id="loadStatus">반과 모둠을 골라 주세요.</div>
+  </div>
+
+  <div class="card">
+    <p class="step">2단계</p>
+    <h2>측정한 값 넣기</h2>
+    <p class="lede">거리는 자유롭게 정할 수 있습니다. 아래 버튼을 누르면 자주 쓰는 값이 채워지고, 칸을 직접 고쳐도 됩니다. 같은 거리에서 최대 세 번까지 재고 평균을 냅니다. 한 번만 재도 괜찮습니다. 거리는 <strong>전구 중심에서 조도 센서까지</strong>를 잰 값이어야 합니다.</p>
+    <div class="fieldrow">
+      <label id="lblPre">거리 설정</label>
+      <div class="chips" role="group" aria-labelledby="lblPre">
+        <button id="preA" aria-pressed="true">10 · 20 · 30 · 40 cm</button>
+        <button id="preB" aria-pressed="false">20 · 40 · 60 · 80 cm</button>
+        <button id="preC" aria-pressed="false">직접 입력</button>
+      </div>
+    </div>
+    <table class="data">
+      <thead><tr>
+        <th style="width:20%">거리 (cm)</th><th>1회</th><th>2회</th><th>3회</th>
+        <th style="width:17%">평균 (lx)</th><th style="width:34px"></th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="btnrow">
+      <button class="btn" id="addRow">칸 추가</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <p class="step">3단계</p>
+    <h2>그래프로 보기</h2>
+    <div style="margin:0 0 12px">
+      <div class="chips" role="group" aria-label="그래프 단위">
+        <button id="modeLux" aria-pressed="true">평균값 (lx)</button>
+        <button id="modeRel" aria-pressed="false">비율로 보기</button>
+      </div>
+    </div>
+    <svg class="chart" id="chart" viewBox="0 0 640 380" role="img" aria-labelledby="chartTitle">
+      <title id="chartTitle">거리에 따른 빛의 세기 그래프</title>
+    </svg>
+    <div class="legend">
+      <span><i class="swatch" style="background:#2A78D6"></i>우리 모둠이 측정한 값</span>
+      <span><i class="swatch" style="background:#FF7A59"></i>거리의 제곱에 반비례할 때</span>
+    </div>
+    <div class="verdict none" id="verdict">값을 두 줄 이상 넣으면 그래프와 분석이 나타납니다.</div>
+  </div>
+
+  <div class="card">
+    <p class="step">4단계</p>
+    <h2>결과 해석하기</h2>
+    <p class="lede">우리 모둠의 그래프를 보면서 답해 봅시다. 답은 선생님이 함께 봅니다.</p>
+    <div id="qform"></div>
+  </div>
+
+  <div class="card">
+    <p class="step">5단계</p>
+    <h2>제출하기</h2>
+    <p class="lede">제출한 뒤에도 값을 고쳐서 다시 제출할 수 있습니다.</p>
+    <div class="btnrow">
+      <button class="btn primary" id="submitBtn">모둠 자료 제출</button>
+      <button class="btn" id="savePng">그래프 이미지로 저장</button>
+    </div>
+    <div class="status info" id="submitStatus">아직 제출하지 않았습니다.</div>
+    <div id="codeArea" hidden>
+      <p class="lede" style="margin:14px 0 0;font-size:13.5px">아래 제출 코드를 복사해 선생님께 전달하세요.</p>
+      <textarea class="codebox" id="codeOut" readonly></textarea>
+      <div class="btnrow"><button class="btn" id="copyCode">제출 코드 복사</button></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= PANEL 2 ================= -->
+<section role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+  <div class="card dark">
+    <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:6px">
+      <h2 style="margin:0">등급 자</h2>
+      <div class="chips" role="group" aria-label="등급 종류">
+        <button id="modeApp" aria-pressed="true">겉보기 등급</button>
+        <button id="modeAbs" aria-pressed="false">절대 등급</button>
+        <button id="modeCmp" aria-pressed="false">나란히 비교</button>
+      </div>
+    </div>
+    <p class="lede" id="rulerLede"></p>
+    <svg class="ruler" id="ruler" viewBox="0 0 640 250" role="img" aria-labelledby="rulerTitle">
+      <title id="rulerTitle">별들의 등급을 나타낸 눈금자</title>
+    </svg>
+    <div class="detail" id="starDetail"></div>
+  </div>
+
+  <div class="card dark">
+    <h2>등급 차이가 밝기 차이로</h2>
+    <p class="lede">등급이 1 작아질 때마다 밝기는 약 2.5배가 됩니다. 그래서 1등급 별은 6등급 별보다 정확히 100배 밝습니다.</p>
+    <div class="grid2">
+      <div><label class="numlbl" for="magA">밝은 별의 등급</label>
+        <input class="numin" type="number" id="magA" value="1" step="0.1"></div>
+      <div><label class="numlbl" for="magB">어두운 별의 등급</label>
+        <input class="numin" type="number" id="magB" value="6" step="0.1"></div>
+    </div>
+    <div class="result"><span class="big" id="magOut">—</span><p class="cap" id="magCap"></p></div>
+  </div>
+
+  <div class="card dark">
+    <h2>빛은 얼마나 넓게 퍼질까</h2>
+    <p class="lede">광원에서 나온 빛은 멀어질수록 넓은 면에 퍼집니다. 빛의 양은 그대로인데 퍼지는 넓이만 커지니, 한 칸이 받는 빛은 그만큼 줄어듭니다. 슬라이더를 옮겨 확인해 보세요.</p>
+    <div class="sliderow">
+      <label for="distMul">거리를 몇 배로</label>
+      <input type="range" id="distMul" min="1" max="10" step="1" value="2">
+      <span class="readout" id="distOut">2배</span>
+    </div>
+    <svg class="spread" id="spread" viewBox="0 0 640 336" role="img" aria-labelledby="spreadTitle">
+      <title id="spreadTitle">거리에 따라 빛이 퍼지는 넓이</title>
+    </svg>
+    <div class="stat3">
+      <div class="stat"><span class="v" id="sArea">—</span><span class="k">퍼지는 넓이</span></div>
+      <div class="stat"><span class="v" id="sBright">—</span><span class="k">빛의 세기</span></div>
+      <div class="stat"><span class="v" id="sMag">—</span><span class="k">등급 변화</span></div>
+    </div>
+    <p class="lede" style="margin:16px 0 0;font-size:13.5px">거리를 10배로 옮기면 넓이는 100배가 되고, 빛의 세기는 1/100배, 등급으로는 정확히 5등급 어두워집니다. 절대 등급이 <strong style="color:var(--gold)">10 pc</strong>를 기준으로 정해진 것도 이런 계산을 편하게 하기 위해서입니다.</p>
+  </div>
+</section>
+
+<!-- ================= PANEL 3 ================= -->
+<section role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+  <div class="card">
+    <h2>확인 문제</h2>
+    <p class="lede">답을 고르면 바로 확인할 수 있습니다. 틀려도 괜찮으니 이유를 읽어 보세요.</p>
+    <div id="quiz"></div>
+    <div id="scoreBox"></div>
+  </div>
+</section>
+
+<!-- ================= PANEL 4 ================= -->
+<section role="tabpanel" id="p4" aria-labelledby="t4" hidden>
+
+  <div class="card dark" id="pinCard">
+    <h2>교사용 화면</h2>
+    <p class="lede">모둠이 제출한 자료를 모아서 봅니다.</p>
+    <div class="fieldrow" style="max-width:240px">
+      <label for="pinIn">교사 비밀번호</label>
+      <input class="text" type="password" id="pinIn" inputmode="numeric" placeholder="비밀번호">
+    </div>
+    <div class="btnrow"><button class="btn primary" id="pinBtn">열기</button></div>
+    <div class="status err" id="pinErr" hidden>비밀번호가 맞지 않습니다.</div>
+  </div>
+
+  <div id="tPanel" hidden>
+    <div class="card dark">
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+        <h2 style="margin:0">제출 현황</h2>
+        <div class="chips" role="group" aria-label="반 선택" id="tClsChips"></div>
+      </div>
+      <div class="tmeta" id="tSummary"></div>
+      <div class="tgrid" id="tGrid"></div>
+      <div class="btnrow">
+        <button class="btn" id="tRefresh">새로 고침</button>
+        <button class="btn" id="tCsv">CSV로 내려받기</button>
+        <button class="btn" id="tImport">제출 코드 넣기</button>
+      </div>
+      <div class="status info" id="tStatus"></div>
+    </div>
+
+    <div class="card dark">
+      <h2>반 전체 겹쳐 보기</h2>
+      <p class="lede">거리 설정이 달라도 비교할 수 있도록, 가로축은 <strong style="color:var(--gold)">첫 거리의 몇 배</strong>, 세로축은 <strong style="color:var(--gold)">첫 측정값의 몇 배</strong>로 맞췄습니다. 주황 점선에 가까울수록 이론값에 잘 맞은 모둠입니다.</p>
+      <svg class="chart" id="tChart" viewBox="0 0 640 380" role="img" aria-label="모둠별 측정 결과를 겹쳐 그린 그래프"></svg>
+      <div class="legend" id="tLegend"></div>
+    </div>
+
+    <div class="card dark" id="tDetailCard">
+      <h2>모둠별 자료</h2>
+      <div id="tDetail"></div>
+    </div>
+  </div>
+</section>
+
+<p class="foot">
+  중학교 2학년 과학 · Ⅷ. 별과 우주 — 별의 밝기와 등급<br>
+  등급과 거리 값은 교과서와 자료에 따라 조금씩 다를 수 있습니다.
+</p>
+
+</div>
+
+<script>
+/* ============================================================
+   설정 — 선생님이 고치는 곳은 아래 두 줄뿐입니다.
+
+   ENDPOINT     : 구글 Apps Script 웹앱 주소. 비워 두면 이 기기에만 저장됩니다.
+   TEACHER_PIN  : 교사용 화면 비밀번호. 반드시 바꿔 주세요.
+
+   따옴표는 반드시 곧은 따옴표(')여야 합니다. 문서에서 붙여 넣으면
+   둥근 따옴표(‘ ’)로 바뀌는 일이 있으니 직접 다시 쳐 주세요.
+   ============================================================ */
+window.STELLAR_CONFIG = {
+  ENDPOINT: 'https://script.google.com/macros/s/AKfycbwuKGA6vRyHKmtcEyuHjI2Ug9vMunGGJBwsIXj4BvZN1h2pVTNNBFRxupmk0iY8FAt0xQ/exec',
+  TEACHER_PIN: '2017'
+};
+</script>
+
+<script>
+(function(){
+'use strict';
+
+/* 설정을 읽되, 설정이 잘못되어도 앱 자체는 계속 동작하게 합니다. */
+var raw = window.STELLAR_CONFIG || {};
+var CONFIG = {
+  ENDPOINT: String(raw.ENDPOINT == null ? '' : raw.ENDPOINT)
+              .replace(/[\u2018\u2019\u201C\u201D]/g,'').trim(),
+  TEACHER_PIN: String(raw.TEACHER_PIN == null ? '0000' : raw.TEACHER_PIN).trim()
+};
+if(CONFIG.ENDPOINT && CONFIG.ENDPOINT.indexOf('http') !== 0){
+  if(window.__stellarError)window.__stellarError(
+    '설정의 ENDPOINT 주소가 http로 시작하지 않습니다. 이 기기에만 저장됩니다.');
+  CONFIG.ENDPOINT='';
+}
+if(!window.STELLAR_CONFIG && window.__stellarError){
+  window.__stellarError('설정 부분에 오류가 있어 기본값으로 실행합니다. CONFIG의 따옴표를 확인해 주세요.');
+}
+
+var CLASSES=[1,2,3,4,5], GROUPS=[1,2,3,4,5,6];
+var PRESETS={A:[10,20,30,40], B:[20,40,60,80]};
+var SVGNS='http://www.w3.org/2000/svg';
+
+/* ---------- 저장소 ---------- */
+var Store=(function(){
+  var mode='local', mem={};
+  if(CONFIG.ENDPOINT) mode='remote';
+  else if(window.storage && window.storage.set) mode='artifact';
+
+  function lsGet(k){try{return window.localStorage.getItem(k);}catch(e){return mem[k]||null;}}
+  function lsSet(k,v){try{window.localStorage.setItem(k,v);}catch(e){mem[k]=v;}}
+  function lsKeys(){
+    var out=[];
+    try{
+      for(var i=0;i<window.localStorage.length;i++){
+        var k=window.localStorage.key(i);
+        if(k&&k.indexOf('grp:')===0)out.push(k);
+      }
+    }catch(e){for(var m in mem)if(m.indexOf('grp:')===0)out.push(m);}
+    return out;
+  }
+  return {
+    mode:mode,
+    label:function(){
+      return mode==='remote'?'구글 시트에 저장됩니다'
+           :mode==='artifact'?'공용 저장소에 저장됩니다'
+           :'이 기기에만 저장됩니다';
+    },
+    save:function(rec){
+      if(mode==='remote'){
+        return fetch(CONFIG.ENDPOINT,{method:'POST',
+          headers:{'Content-Type':'text/plain;charset=utf-8'},
+          body:JSON.stringify(rec)})
+          .then(function(r){return r.json();})
+          .then(function(j){
+            if(!j||!j.ok)throw new Error(j&&j.error?j.error:'저장 실패');
+            return true;
+          });
+      }
+      if(mode==='artifact'){
+        return window.storage.set(rec.key,JSON.stringify(rec),true).then(function(){return true;});
+      }
+      lsSet(rec.key,JSON.stringify(rec));
+      return Promise.resolve(true);
+    },
+    load:function(key){
+      if(mode==='artifact'){
+        return window.storage.get(key,true)
+          .then(function(r){return r&&r.value?JSON.parse(r.value):null;})
+          .catch(function(){return null;});
+      }
+      if(mode==='remote'){
+        return this.loadAll().then(function(list){
+          for(var i=0;i<list.length;i++)if(list[i].key===key)return list[i];
+          return null;
+        }).catch(function(){return null;});
+      }
+      var v=lsGet(key);
+      return Promise.resolve(v?JSON.parse(v):null);
+    },
+    loadAll:function(){
+      if(mode==='remote'){
+        return fetch(CONFIG.ENDPOINT+'?action=list&t='+Date.now())
+          .then(function(r){return r.json();})
+          .then(function(j){return (j&&j.list)?j.list:[];});
+      }
+      if(mode==='artifact'){
+        return window.storage.list('grp:',true).then(function(r){
+          var keys=(r&&r.keys)?r.keys:[];
+          return Promise.all(keys.map(function(k){
+            var kk=(typeof k==='string')?k:k.key;
+            return window.storage.get(kk,true)
+              .then(function(v){return v&&v.value?JSON.parse(v.value):null;})
+              .catch(function(){return null;});
+          }));
+        }).then(function(a){return a.filter(Boolean);}).catch(function(){return [];});
+      }
+      return Promise.resolve(lsKeys().map(function(k){
+        try{return JSON.parse(lsGet(k));}catch(e){return null;}
+      }).filter(Boolean));
+    },
+    saveLocalCopy:function(rec){lsSet(rec.key,JSON.stringify(rec));}
+  };
+})();
+
+/* ---------- 공용 도구 ---------- */
+function el(tag,attrs,text){
+  var e=document.createElementNS(SVGNS,tag);
+  for(var k in attrs)e.setAttribute(k,attrs[k]);
+  if(text!=null)e.textContent=text;
+  return e;
+}
+function niceTicks(max,target){
+  if(!(max>0))return [0,1];
+  var raw=max/target,mag=Math.pow(10,Math.floor(Math.log(raw)/Math.LN10)),
+      norm=raw/mag,step;
+  if(norm<=1)step=1;else if(norm<=2)step=2;else if(norm<=5)step=5;else step=10;
+  step*=mag;
+  var t=[];for(var v=0;v<=max+step*.001;v+=step)t.push(v);
+  return t;
+}
+function fmt(v){
+  if(v===0)return '0';
+  if(Math.abs(v)>=100)return String(Math.round(v));
+  if(Math.abs(v)>=10)return v.toFixed(0);
+  if(Math.abs(v)>=1)return v.toFixed(1);
+  return v.toFixed(2);
+}
+function expoOf(pts){
+  var n=pts.length;
+  if(n<2)return null;
+  var sx=0,sy=0,sxy=0,sxx=0;
+  pts.forEach(function(p){
+    var lx=Math.log(p.d),ly=Math.log(p.l);
+    sx+=lx;sy+=ly;sxy+=lx*ly;sxx+=lx*lx;
+  });
+  var den=n*sxx-sx*sx;
+  if(Math.abs(den)<1e-12)return null;
+  return -((n*sxy-sx*sy)/den);
+}
+function esc(s){
+  return String(s).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+  });
+}
+
+/* ---------- 그래프 ---------- */
+function drawChart(svg,cfg){
+  while(svg.childNodes.length>(cfg.keep||0))svg.removeChild(svg.lastChild);
+  var W=640,H=380,PL=64,PR=22,PT=24,PB=56,iw=W-PL-PR,ih=H-PT-PB,
+      dark=!!cfg.dark,
+      gridC=dark?'rgba(255,255,255,.09)':'#E6EAF3',
+      axisC=dark?'rgba(255,255,255,.28)':'#C3CADC',
+      tickC=dark?'#98A2C8':'#8A93B4',
+      labC=dark?'#98A2C8':'#5A6488';
+
+  if(!cfg.series.length||!cfg.series.some(function(s){return s.pts.length>1;})){
+    svg.appendChild(el('text',{x:W/2,y:H/2,'text-anchor':'middle',fill:tickC,
+      'font-size':'15','font-family':'Noto Sans KR, sans-serif'},cfg.empty||'자료가 없습니다'));
+    return;
+  }
+  var allX=[],allY=[];
+  cfg.series.forEach(function(s){s.pts.forEach(function(p){allX.push(p.x);allY.push(p.y);});});
+  var xTicks=niceTicks(Math.max.apply(null,allX)*1.1,5),xTop=xTicks[xTicks.length-1],
+      yTicks=niceTicks(Math.max.apply(null,allY)*1.12,4),yTop=yTicks[yTicks.length-1];
+  function X(v){return PL+v/xTop*iw;}
+  function Y(v){return PT+ih-v/yTop*ih;}
+
+  yTicks.forEach(function(t){
+    svg.appendChild(el('line',{x1:PL,y1:Y(t),x2:PL+iw,y2:Y(t),stroke:gridC,'stroke-width':1}));
+    svg.appendChild(el('text',{x:PL-10,y:Y(t)+4,'text-anchor':'end',fill:tickC,
+      'font-size':'12','font-family':'IBM Plex Mono, monospace'},fmt(t)));
+  });
+  xTicks.forEach(function(t){
+    if(t===0)return;
+    svg.appendChild(el('text',{x:X(t),y:PT+ih+22,'text-anchor':'middle',fill:tickC,
+      'font-size':'12','font-family':'IBM Plex Mono, monospace'},fmt(t)));
+  });
+  svg.appendChild(el('line',{x1:PL,y1:PT+ih,x2:PL+iw,y2:PT+ih,stroke:axisC,'stroke-width':1.5}));
+  svg.appendChild(el('text',{x:PL+iw/2,y:H-14,'text-anchor':'middle',fill:labC,
+    'font-size':'13','font-family':'Noto Sans KR, sans-serif'},cfg.xLabel));
+  svg.appendChild(el('text',{x:16,y:PT+ih/2,'text-anchor':'middle',fill:labC,
+    'font-size':'13','font-family':'Noto Sans KR, sans-serif',
+    transform:'rotate(-90,16,'+(PT+ih/2)+')'},cfg.yLabel));
+
+  cfg.series.forEach(function(s){
+    var inside=s.pts.filter(function(p){return p.y<=yTop*1.02&&p.x<=xTop*1.02;});
+    if(inside.length<2)return;
+    var attrs={points:inside.map(function(p){return X(p.x)+','+Y(p.y);}).join(' '),
+      fill:'none',stroke:s.color,'stroke-width':s.w||2.5,
+      'stroke-linejoin':'round','stroke-linecap':'round'};
+    if(s.dash)attrs['stroke-dasharray']=s.dash;
+    if(s.op)attrs.opacity=s.op;
+    svg.appendChild(el('polyline',attrs));
+    if(s.dots){
+      inside.forEach(function(p){
+        svg.appendChild(el('circle',{cx:X(p.x),cy:Y(p.y),r:s.r||6,fill:s.color,
+          stroke:dark?'#0B1026':'#FFFFFF','stroke-width':2.5}));
+        if(s.labels){
+          svg.appendChild(el('text',{x:X(p.x),y:Y(p.y)-14,'text-anchor':'middle',fill:s.color,
+            'font-size':'12','font-family':'IBM Plex Mono, monospace','font-weight':'500'},
+            s.labels(p)));
+        }
+      });
+    }
+  });
+}
+
+/* ============================================================
+   PANEL 1
+   ============================================================ */
+var state={cls:null,grp:null,preset:'A',relMode:false};
+
+function buildChips(box,list,suffix,onPick){
+  box.innerHTML='';
+  list.forEach(function(v){
+    var b=document.createElement('button');
+    b.textContent=v+suffix;
+    b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',function(){
+      Array.prototype.forEach.call(box.children,function(c){c.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');
+      onPick(v);
+    });
+    box.appendChild(b);
+  });
+}
+buildChips(document.getElementById('clsChips'),CLASSES,'반',function(v){state.cls=v;tryLoad();});
+buildChips(document.getElementById('grpChips'),GROUPS,'모둠',function(v){state.grp=v;tryLoad();});
+
+var rowsEl=document.getElementById('rows');
+var MAX_ROWS=8, MIN_ROWS=2;
+
+function makeRow(d,m){
+  var tr=document.createElement('tr');
+  tr.innerHTML=
+    '<td><input type="number" inputmode="decimal" class="dist-in" placeholder="거리" value="'+
+      (d==null?'':d)+'"></td>'+
+    [0,1,2].map(function(k){
+      return '<td><input type="number" inputmode="decimal" class="m'+k+
+        '" placeholder="—" value="'+((m&&m[k]!=null)?m[k]:'')+'"></td>';
+    }).join('')+
+    '<td class="avg">—</td>'+
+    '<td class="del"><button class="x" type="button" aria-label="이 줄 지우기">×</button></td>';
+
+  tr.querySelector('.dist-in').addEventListener('input',function(){
+    markCustom();
+    refresh();
+  });
+  [0,1,2].forEach(function(k){
+    tr.querySelector('.m'+k).addEventListener('input',refresh);
+  });
+  tr.querySelector('.x').addEventListener('click',function(){
+    if(rowsEl.children.length<=MIN_ROWS)return;
+    tr.remove();
+    markCustom();
+    syncRowButtons();
+    refresh();
+  });
+  return tr;
+}
+function buildRows(list){
+  rowsEl.innerHTML='';
+  var src=(list&&list.length)?list:PRESETS.A.map(function(d){return {d:d,m:[null,null,null]};});
+  src.slice(0,MAX_ROWS).forEach(function(r){rowsEl.appendChild(makeRow(r.d,r.m));});
+  while(rowsEl.children.length<MIN_ROWS)rowsEl.appendChild(makeRow(null,null));
+  syncRowButtons();
+  refresh();
+}
+function syncRowButtons(){
+  var n=rowsEl.children.length;
+  Array.prototype.forEach.call(rowsEl.children,function(tr){
+    tr.querySelector('.x').disabled=(n<=MIN_ROWS);
+  });
+  document.getElementById('addRow').disabled=(n>=MAX_ROWS);
+}
+document.getElementById('addRow').addEventListener('click',function(){
+  if(rowsEl.children.length>=MAX_ROWS)return;
+  rowsEl.appendChild(makeRow(null,null));
+  markCustom();
+  syncRowButtons();
+  refresh();
+});
+
+function readRows(){
+  return Array.prototype.map.call(rowsEl.children,function(tr){
+    var d=parseFloat(tr.querySelector('.dist-in').value);
+    return {d:(isFinite(d)&&d>0)?d:null,
+      m:[0,1,2].map(function(k){
+        var v=parseFloat(tr.querySelector('.m'+k).value);
+        return isFinite(v)&&v>0?v:null;
+      })};
+  });
+}
+function avgOf(m){
+  var f=m.filter(function(v){return v!=null;});
+  return f.length?f.reduce(function(a,b){return a+b;},0)/f.length:null;
+}
+function measured(){
+  var out=[];
+  readRows().forEach(function(r){
+    var a=avgOf(r.m);
+    if(r.d!=null&&a!=null)out.push({d:r.d,l:a});
+  });
+  return out.sort(function(a,b){return a.d-b.d;});
+}
+function setChips(p){
+  ['A','B','C'].forEach(function(k){
+    document.getElementById('pre'+k).setAttribute('aria-pressed',p===k?'true':'false');
+  });
+}
+function markCustom(){
+  if(state.preset!=='C'){state.preset='C';setChips('C');}
+}
+function applyPreset(p){
+  state.preset=p;
+  setChips(p);
+  if(p==='C')return;
+  var keep=readRows();
+  buildRows(PRESETS[p].map(function(d,i){
+    return {d:d,m:(keep[i]&&keep[i].m)?keep[i].m:[null,null,null]};
+  }));
+  state.preset=p;
+  setChips(p);
+}
+document.getElementById('preA').addEventListener('click',function(){applyPreset('A');});
+document.getElementById('preB').addEventListener('click',function(){applyPreset('B');});
+document.getElementById('preC').addEventListener('click',function(){state.preset='C';setChips('C');});
+function setRel(r){
+  state.relMode=r;
+  document.getElementById('modeLux').setAttribute('aria-pressed',r?'false':'true');
+  document.getElementById('modeRel').setAttribute('aria-pressed',r?'true':'false');
+  refresh();
+}
+document.getElementById('modeLux').addEventListener('click',function(){setRel(false);});
+document.getElementById('modeRel').addEventListener('click',function(){setRel(true);});
+
+/* 해석 질문 */
+var QUESTIONS=[
+  {t:'num',mul:2,unit:'배',
+   q:'거리가 <strong>2배</strong>로 멀어졌을 때, 빛의 세기는 몇 배가 되었나요? 우리 모둠의 평균값으로 계산해 봅시다.'},
+  {t:'num',mul:3,unit:'배',
+   q:'거리가 <strong>3배</strong>로 멀어졌을 때는 몇 배가 되었나요?'},
+  {t:'txt',q:'위 두 답을 보고, 광원으로부터의 거리와 빛의 세기 사이에 어떤 관계가 있는지 문장으로 써 봅시다.'},
+  {t:'txt',q:'우리 모둠의 값이 이론값과 달랐다면, 그 까닭은 무엇이라고 생각하나요? 실험 과정에서 찾아봅시다.'},
+  {t:'txt',q:'밤하늘의 두 별이 <strong>같은 밝기로 보여도</strong> 실제 밝기는 다를 수 있습니다. 그 까닭을 이 실험 결과와 연결지어 설명해 봅시다.'}
+];
+(function(){
+  var box=document.getElementById('qform');
+  QUESTIONS.forEach(function(item,i){
+    var d=document.createElement('div');
+    d.className='qbox';
+    var body=item.t==='num'
+      ? '<div class="numline"><input type="text" inputmode="decimal" id="q'+i+
+        '" placeholder="예) 0.25"><span class="unit">'+item.unit+
+        '</span><button class="btn" data-chk="'+i+'">확인</button></div>'+
+        '<div class="fb" id="fb'+i+'" hidden></div>'
+      : '<textarea class="ans" id="q'+i+'" placeholder="자유롭게 써 봅시다"></textarea>';
+    d.innerHTML='<p class="qlab"><span class="n">'+(i+1)+'</span>'+item.q+'</p>'+body;
+    box.appendChild(d);
+  });
+  box.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-chk]');
+    if(b)checkNum(parseInt(b.getAttribute('data-chk'),10));
+  });
+})();
+function parseRatio(s){
+  s=String(s||'').replace(/배/g,'').replace(/\s/g,'');
+  if(!s)return NaN;
+  if(s.indexOf('/')>0){
+    var p=s.split('/'),a=parseFloat(p[0]),b=parseFloat(p[1]);
+    return (isFinite(a)&&isFinite(b)&&b!==0)?a/b:NaN;
+  }
+  return parseFloat(s);
+}
+function checkNum(i){
+  var item=QUESTIONS[i],
+      val=parseRatio(document.getElementById('q'+i).value),
+      ideal=1/(item.mul*item.mul),
+      fb=document.getElementById('fb'+i),
+      data=measured(),mine=null;
+  if(data.length>=2){
+    var b=data[0];
+    for(var k=1;k<data.length;k++){
+      if(Math.abs(data[k].d/b.d-item.mul)<0.01){mine=data[k].l/b.l;break;}
+    }
+  }
+  fb.hidden=false;
+  if(!isFinite(val)){
+    fb.className='fb no';
+    fb.textContent='숫자를 넣어 주세요. 0.25 처럼 소수로 써도 되고 1/4 처럼 써도 됩니다.';
+    return;
+  }
+  var ok=Math.abs(val-ideal)/ideal<0.25;
+  fb.className='fb '+(ok?'ok':'no');
+  var msg=(ok?'맞았습니다. ':'')+'이론값은 1/'+(item.mul*item.mul)+' = '+ideal.toFixed(2)+
+    '배입니다. 거리가 '+item.mul+'배가 되면 같은 양의 빛이 '+item.mul+'×'+item.mul+'='+
+    (item.mul*item.mul)+'배 넓은 면에 퍼지기 때문입니다.';
+  if(mine!=null)msg+=' 우리 모둠의 실제 측정값은 '+mine.toFixed(2)+'배였습니다.';
+  fb.textContent=msg;
+}
+function readAnswers(){
+  return QUESTIONS.map(function(item,i){
+    return String(document.getElementById('q'+i).value||'').trim();
+  });
+}
+function writeAnswers(arr){
+  if(!arr)return;
+  QUESTIONS.forEach(function(item,i){
+    var e=document.getElementById('q'+i);
+    if(e&&arr[i]!=null)e.value=arr[i];
+  });
+}
+
+function refresh(){
+  Array.prototype.forEach.call(rowsEl.children,function(tr){
+    var a=avgOf([0,1,2].map(function(k){
+      var v=parseFloat(tr.querySelector('.m'+k).value);
+      return isFinite(v)&&v>0?v:null;
+    }));
+    tr.querySelector('.avg').textContent=a==null?'—':fmt(a);
+  });
+  var data=measured(),series=[];
+  if(data.length>=2){
+    var base=data[0],rel=state.relMode,top=data[data.length-1].d*1.12,pts=[];
+    for(var i=0;i<=160;i++){
+      var dv=base.d+(top-base.d)*i/160;
+      pts.push({x:dv,y:(rel?1:base.l)*Math.pow(base.d/dv,2)});
+    }
+    series.push({color:'#FF7A59',w:2,dash:'6 4',pts:pts});
+    series.push({color:'#2A78D6',dots:true,
+      labels:function(p){return rel?p.y.toFixed(2):fmt(p.y);},
+      pts:data.map(function(p){return {x:p.d,y:rel?p.l/base.l:p.l};})});
+  }
+  drawChart(document.getElementById('chart'),{keep:1,series:series,
+    xLabel:'광원으로부터의 거리 (cm)',
+    yLabel:state.relMode?'첫 측정값에 대한 비율':'빛의 세기 (lx)',
+    empty:'값을 두 줄 이상 넣어 주세요'});
+  analyse(data);
+}
+
+function analyse(data){
+  var v=document.getElementById('verdict');
+  if(data.length<2){
+    v.className='verdict none';
+    v.textContent='값을 두 줄 이상 넣으면 그래프와 분석이 나타납니다.';
+    return null;
+  }
+  var base=data[0],expo=expoOf(data),ratios=[];
+  data.forEach(function(p){
+    if(p!==base)ratios.push(p.l/(base.l*Math.pow(base.d/p.d,2)));
+  });
+  var avg=ratios.reduce(function(a,b){return a+b;},0)/ratios.length,
+      close=expo>1.75&&expo<2.3,html='';
+  v.className='verdict '+(close?'good':'warn');
+  html+='<strong>'+(close?'거리의 제곱에 반비례하는 관계가 잘 나타났습니다'
+    :'아직 거리의 제곱에 반비례하는 관계가 잘 보이지 않습니다')+'</strong>';
+  html+='측정값은 거리의 <span class="mono">'+expo.toFixed(1)+
+    '제곱</span>에 반비례하고 있습니다. 이론값은 <span class="mono">2제곱</span>입니다.<ul>';
+  data.forEach(function(p){
+    if(p===base)return;
+    html+='<li>거리가 '+fmt(p.d/base.d)+'배 → 예상 <span class="mono">'+
+      fmt(base.l*Math.pow(base.d/p.d,2))+' lx</span>, 측정 <span class="mono">'+fmt(p.l)+' lx</span></li>';
+  });
+  html+='</ul>';
+  if(!close){
+    if(avg>1.15){
+      html+='<p style="margin:10px 0 0">측정값이 예상보다 크게 나왔습니다. 다음을 확인해 보세요.</p><ul>'+
+        '<li>거리를 전구 중심이 아니라 스탠드 받침이나 갓에서부터 재지 않았나요</li>'+
+        '<li>주변 조명이나 벽·책상에서 반사된 빛이 함께 들어오지 않았나요</li>'+
+        '<li>광원에 너무 가까이서 재지는 않았나요</li></ul>';
+    }else if(avg<0.85){
+      html+='<p style="margin:10px 0 0">측정값이 예상보다 작게 나왔습니다. 다음을 확인해 보세요.</p><ul>'+
+        '<li>조도 센서가 광원을 똑바로 바라보고 있나요</li>'+
+        '<li>손이나 자, 거치대가 센서를 가리지 않았나요</li></ul>';
+    }else{
+      html+='<p style="margin:10px 0 0">값이 들쭉날쭉합니다. 같은 자리에서 두세 번 재어 평균을 내 보세요.</p>';
+    }
+  }
+  v.innerHTML=html;
+  return {expo:expo,avg:avg};
+}
+
+function tryLoad(){
+  var st=document.getElementById('loadStatus');
+  if(!state.cls||!state.grp){
+    st.className='status info';st.textContent='반과 모둠을 골라 주세요.';return;
+  }
+  st.className='status info';st.textContent='저장된 자료를 확인하는 중입니다…';
+  Store.load('grp:'+state.cls+'-'+state.grp).then(function(rec){
+    var sub=document.getElementById('submitStatus');
+    if(rec){
+      document.getElementById('members').value=rec.members||'';
+      state.preset=rec.preset||'C';
+      setChips(state.preset==='A'||state.preset==='B'?state.preset:'C');
+      buildRows(rec.rows);
+      writeAnswers(rec.answers);
+      st.className='status ok';
+      st.textContent=state.cls+'반 '+state.grp+'모둠의 저장된 자료를 불러왔습니다. 이어서 하면 됩니다.';
+      sub.className='status ok';
+      sub.textContent='이미 제출한 자료가 있습니다. 고쳐서 다시 제출할 수 있습니다.';
+    }else{
+      st.className='status info';
+      st.textContent=state.cls+'반 '+state.grp+'모둠 · 새로 시작합니다. ('+Store.label()+')';
+      sub.className='status info';
+      sub.textContent='아직 제출하지 않았습니다.';
+    }
+  });
+}
+
+document.getElementById('submitBtn').addEventListener('click',function(){
+  var st=document.getElementById('submitStatus'),btn=this;
+  if(!state.cls||!state.grp){
+    st.className='status err';st.textContent='반과 모둠을 먼저 골라 주세요.';return;
+  }
+  var members=document.getElementById('members').value.trim();
+  if(!members){
+    st.className='status err';st.textContent='모둠원 이름을 적어 주세요.';return;
+  }
+  var raw=readRows(),data=measured();
+  if(raw.some(function(r){return r.d==null&&r.m.some(function(v){return v!=null;});})){
+    st.className='status err';
+    st.textContent='측정값은 넣었는데 거리가 비어 있는 줄이 있습니다. 거리를 적어 주세요.';return;
+  }
+  var seen={},dup=false;
+  data.forEach(function(p){if(seen[p.d])dup=true;seen[p.d]=1;});
+  if(dup){
+    st.className='status err';st.textContent='같은 거리가 두 번 들어 있습니다. 거리를 확인해 주세요.';return;
+  }
+  if(data.length<2){
+    st.className='status err';st.textContent='서로 다른 거리에서 잰 값을 두 개 이상 넣어 주세요.';return;
+  }
+  var e=expoOf(data),
+      rec={key:'grp:'+state.cls+'-'+state.grp,
+        cls:state.cls,grp:state.grp,members:members,preset:state.preset,
+        rows:readRows(),answers:readAnswers(),
+        expo:e==null?'':Number(e.toFixed(2)),
+        updated:new Date().toISOString()};
+  Store.saveLocalCopy(rec);
+  btn.disabled=true;
+  st.className='status info';st.textContent='제출하는 중입니다…';
+  Store.save(rec).then(function(){
+    btn.disabled=false;
+    st.className='status ok';
+    st.textContent='제출했습니다. ('+Store.label()+') 값을 고쳐서 다시 제출해도 됩니다.';
+    if(Store.mode==='local')showCode(rec);
+  }).catch(function(err){
+    btn.disabled=false;
+    st.className='status err';
+    st.textContent='제출하지 못했습니다: '+err.message+' 아래 제출 코드를 복사해 선생님께 전달해 주세요.';
+    showCode(rec);
+  });
+});
+function showCode(rec){
+  document.getElementById('codeArea').hidden=false;
+  var s=JSON.stringify(rec);
+  try{s=btoa(unescape(encodeURIComponent(s)));}catch(e){}
+  document.getElementById('codeOut').value=s;
+}
+document.getElementById('copyCode').addEventListener('click',function(){
+  var ta=document.getElementById('codeOut'),btn=this,old=btn.textContent;
+  ta.select();
+  var done=function(){btn.textContent='복사했습니다';setTimeout(function(){btn.textContent=old;},1600);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(ta.value).then(done,function(){
+      try{document.execCommand('copy');done();}catch(e){}
+    });
+  }else{try{document.execCommand('copy');done();}catch(e){}}
+});
+
+document.getElementById('savePng').addEventListener('click',function(){
+  var clone=document.getElementById('chart').cloneNode(true);
+  clone.setAttribute('xmlns',SVGNS);
+  clone.insertBefore(el('rect',{x:0,y:0,width:640,height:380,fill:'#FFFFFF'}),
+    clone.childNodes[1]||null);
+  var img=new Image();
+  img.onload=function(){
+    var c=document.createElement('canvas');c.width=1280;c.height=760;
+    var ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,1280,760);
+    ctx.drawImage(img,0,0,1280,760);
+    var a=document.createElement('a');
+    a.download=(state.cls||'')+'반_'+(state.grp||'')+'모둠_그래프.png';
+    a.href=c.toDataURL('image/png');a.click();
+  };
+  img.onerror=function(){alert('이미지를 만들지 못했습니다. 화면을 캡처해 제출해 주세요.');};
+  img.src='data:image/svg+xml;charset=utf-8,'+
+    encodeURIComponent(new XMLSerializer().serializeToString(clone));
+});
+
+applyPreset('A');
+
+/* ============================================================
+   PANEL 4 — 교사용
+   ============================================================ */
+var T={cls:'all',all:[],sel:null};
+
+function openTeacher(){
+  if(document.getElementById('pinIn').value!==String(CONFIG.TEACHER_PIN)){
+    document.getElementById('pinErr').hidden=false;return;
+  }
+  document.getElementById('pinErr').hidden=true;
+  document.getElementById('pinCard').hidden=true;
+  document.getElementById('tPanel').hidden=false;
+  buildTClsChips();
+  loadAll();
+}
+document.getElementById('pinBtn').addEventListener('click',openTeacher);
+document.getElementById('pinIn').addEventListener('keydown',function(e){
+  if(e.key==='Enter')openTeacher();
+});
+function buildTClsChips(){
+  var box=document.getElementById('tClsChips');
+  box.innerHTML='';
+  [['all','전체']].concat(CLASSES.map(function(c){return [c,c+'반'];})).forEach(function(pair){
+    var b=document.createElement('button');
+    b.textContent=pair[1];
+    b.setAttribute('aria-pressed',pair[0]===T.cls?'true':'false');
+    b.addEventListener('click',function(){
+      T.cls=pair[0];T.sel=null;
+      Array.prototype.forEach.call(box.children,function(c){c.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');
+      renderTeacher();
+    });
+    box.appendChild(b);
+  });
+}
+function loadAll(){
+  var st=document.getElementById('tStatus');
+  st.className='status info';st.textContent='자료를 불러오는 중입니다…';
+  Store.loadAll().then(function(list){
+    T.all=list.filter(function(r){return r&&r.key;});
+    st.className='status info';
+    st.textContent=T.all.length+'개 모둠의 자료를 불러왔습니다. ('+Store.label()+')';
+    renderTeacher();
+  }).catch(function(e){
+    st.className='status err';st.textContent='불러오지 못했습니다: '+e.message;
+  });
+}
+document.getElementById('tRefresh').addEventListener('click',loadAll);
+
+function recOf(c,g){
+  for(var i=0;i<T.all.length;i++){
+    if(Number(T.all[i].cls)===c&&Number(T.all[i].grp)===g)return T.all[i];
+  }
+  return null;
+}
+function ptsOf(rec){
+  if(!rec||!rec.rows)return [];
+  var out=[];
+  rec.rows.forEach(function(r){
+    var f=(r.m||[]).filter(function(v){return v!=null&&isFinite(v)&&v>0;});
+    if(f.length)out.push({d:Number(r.d),l:f.reduce(function(a,b){return a+b;},0)/f.length});
+  });
+  return out.sort(function(a,b){return a.d-b.d;});
+}
+function hd(txt){
+  var d=document.createElement('div');
+  d.className='hd';d.textContent=txt;return d;
+}
+function distLabel(rec){
+  var ds=ptsOf(rec).map(function(p){return p.d;});
+  return ds.length?ds.join(' · ')+' cm':'—';
+}
+
+function renderTeacher(){
+  var grid=document.getElementById('tGrid'),
+      classes=T.cls==='all'?CLASSES:[T.cls];
+  grid.innerHTML='';
+  grid.appendChild(hd(''));
+  GROUPS.forEach(function(g){grid.appendChild(hd(g+'모둠'));});
+  classes.forEach(function(c){
+    grid.appendChild(hd(c+'반'));
+    GROUPS.forEach(function(g){
+      var rec=recOf(c,g),cell=document.createElement('div');
+      if(!rec){
+        cell.className='cell empty';
+        cell.innerHTML='<span class="st">미제출</span>';
+      }else{
+        var pts=ptsOf(rec),
+            ans=(rec.answers||[]).filter(function(a){return a&&String(a).length;}).length,
+            full=pts.length>=3&&ans>=4;
+        cell.className='cell '+(full?'done':'part');
+        cell.innerHTML='<span class="nm">'+esc(String(rec.members||'').split(',')[0])+' 외</span>'+
+          '<span class="st">값 '+pts.length+' · 답 '+ans+'/5</span>';
+        cell.setAttribute('role','button');
+        cell.tabIndex=0;
+        if(T.sel&&T.sel.key===rec.key)cell.setAttribute('aria-current','true');
+        var pick=function(){
+          T.sel=rec;renderTeacher();
+          document.getElementById('tDetailCard').scrollIntoView({behavior:'smooth',block:'start'});
+        };
+        cell.addEventListener('click',pick);
+        cell.addEventListener('keydown',function(e){
+          if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}
+        });
+      }
+      grid.appendChild(cell);
+    });
+  });
+
+  var shown=[];
+  classes.forEach(function(c){GROUPS.forEach(function(g){
+    var r=recOf(c,g);if(r)shown.push(r);
+  });});
+  var exps=shown.map(function(r){return expoOf(ptsOf(r));})
+                .filter(function(v){return v!=null&&isFinite(v);}),
+      mean=exps.length?exps.reduce(function(a,b){return a+b;},0)/exps.length:null;
+  document.getElementById('tSummary').innerHTML=
+    '<span>제출 <b>'+shown.length+' / '+(classes.length*GROUPS.length)+'</b> 모둠</span>'+
+    (mean!=null?'<span>평균 지수 <b>'+mean.toFixed(2)+'</b> (이론값 2)</span>':'')+
+    '<span>거리를 직접 정한 모둠 <b>'+
+    shown.filter(function(r){return r.preset==='C';}).length+'</b></span>';
+
+  drawOverlay(shown);
+  renderDetail();
+}
+
+var PALETTE=['#2A78D6','#1BAF7A','#EDA100','#E87BA4','#9085E9','#00B7B7',
+             '#8FBF3F','#D95926','#7A9BE8','#C05FA0'];
+function drawOverlay(list){
+  var series=[],leg=[],theory=[];
+  for(var i=0;i<=120;i++){var x=1+3.3*i/120;theory.push({x:x,y:1/(x*x)});}
+  series.push({color:'#FF7A59',w:2.5,dash:'6 4',pts:theory});
+  list.forEach(function(rec,i){
+    var pts=ptsOf(rec);
+    if(pts.length<2)return;
+    var b=pts[0],c=PALETTE[i%PALETTE.length];
+    series.push({color:c,w:2,op:.85,dots:true,r:4,
+      pts:pts.map(function(p){return {x:p.d/b.d,y:p.l/b.l};})});
+    leg.push('<span><i class="swatch" style="background:'+c+'"></i>'+rec.cls+'-'+rec.grp+'</span>');
+  });
+  drawChart(document.getElementById('tChart'),{keep:0,dark:true,series:series,
+    xLabel:'첫 거리의 몇 배',yLabel:'첫 측정값의 몇 배',empty:'제출된 자료가 없습니다'});
+  document.getElementById('tLegend').innerHTML=
+    '<span><i class="swatch" style="background:#FF7A59"></i>이론값</span>'+leg.join('');
+}
+
+function renderDetail(){
+  var box=document.getElementById('tDetail'),rec=T.sel;
+  if(!rec){
+    box.innerHTML='<p class="lede" style="margin:0">위 표에서 모둠을 누르면 그 모둠의 측정값과 서술형 답변이 여기에 나타납니다.</p>';
+    return;
+  }
+  var pts=ptsOf(rec),e=expoOf(pts),b=pts[0];
+  var html='<div class="tmeta"><span><b>'+rec.cls+'반 '+rec.grp+'모둠</b></span>'+
+    '<span>'+esc(rec.members||'')+'</span>'+
+    '<span>거리 '+distLabel(rec)+'</span>'+
+    (e!=null?'<span>지수 <b>'+e.toFixed(2)+'</b></span>':'')+
+    '<span>'+esc(String(rec.updated||'').replace('T',' ').slice(0,16))+'</span></div>';
+
+  html+='<table class="mini"><thead><tr><th>거리</th><th>1회</th><th>2회</th><th>3회</th>'+
+    '<th>평균</th><th>첫 값 대비</th><th>이론값</th></tr></thead><tbody>';
+  (rec.rows||[]).forEach(function(r){
+    var f=(r.m||[]).filter(function(v){return v!=null&&isFinite(v)&&v>0;}),
+        a=f.length?f.reduce(function(x,y){return x+y;},0)/f.length:null,
+        th=(b&&a!=null)?b.l*Math.pow(b.d/r.d,2):null;
+    html+='<tr><td>'+r.d+' cm</td>'+
+      [0,1,2].map(function(k){
+        return '<td>'+((r.m&&r.m[k]!=null)?fmt(r.m[k]):'—')+'</td>';
+      }).join('')+
+      '<td>'+(a==null?'—':fmt(a))+'</td>'+
+      '<td>'+((a!=null&&b)?(a/b.l).toFixed(2):'—')+'</td>'+
+      '<td>'+(th==null?'—':fmt(th))+'</td></tr>';
+  });
+  html+='</tbody></table>';
+
+  QUESTIONS.forEach(function(item,i){
+    var a=(rec.answers&&rec.answers[i])?String(rec.answers[i]).trim():'';
+    html+='<div class="qa"><p class="qq">'+(i+1)+'. '+esc(item.q.replace(/<[^>]+>/g,''))+'</p>'+
+      '<p class="aa'+(a?'':' blank')+'">'+(a?esc(a):'답하지 않음')+'</p></div>';
+  });
+  box.innerHTML=html;
+}
+
+document.getElementById('tCsv').addEventListener('click',function(){
+  var classes=T.cls==='all'?CLASSES:[T.cls],rows=[];
+  rows.push(['반','모둠','모둠원','거리구성','거리(cm)','1회','2회','3회','평균','첫값대비','지수n',
+    'Q1','Q2','Q3','Q4','Q5','제출시각']);
+  classes.forEach(function(c){
+    GROUPS.forEach(function(g){
+      var rec=recOf(c,g);
+      if(!rec)return;
+      var pts=ptsOf(rec),b=pts[0],e=expoOf(pts),first=true,ans=rec.answers||[];
+      (rec.rows||[]).forEach(function(r){
+        var f=(r.m||[]).filter(function(v){return v!=null&&isFinite(v)&&v>0;}),
+            a=f.length?f.reduce(function(x,y){return x+y;},0)/f.length:null;
+        rows.push([c,g,rec.members||'',first?distLabel(rec):'',r.d,
+          (r.m&&r.m[0]!=null)?r.m[0]:'',(r.m&&r.m[1]!=null)?r.m[1]:'',(r.m&&r.m[2]!=null)?r.m[2]:'',
+          a==null?'':a.toFixed(1),(a!=null&&b)?(a/b.l).toFixed(3):'',
+          (first&&e!=null)?e.toFixed(2):'',
+          first?(ans[0]||''):'',first?(ans[1]||''):'',first?(ans[2]||''):'',
+          first?(ans[3]||''):'',first?(ans[4]||''):'',
+          first?String(rec.updated||'').replace('T',' ').slice(0,16):'']);
+        first=false;
+      });
+    });
+  });
+  var csv='\uFEFF'+rows.map(function(r){
+    return r.map(function(v){return '"'+String(v).replace(/"/g,'""')+'"';}).join(',');
+  }).join('\n');
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download='별의밝기_측정기록.csv';
+  a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href);},2000);
+});
+
+document.getElementById('tImport').addEventListener('click',function(){
+  var s=window.prompt('모둠이 전달한 제출 코드를 붙여 넣으세요.');
+  if(!s)return;
+  var st=document.getElementById('tStatus');
+  try{
+    var txt=s.trim(),
+        rec=JSON.parse(txt.charAt(0)==='{'?txt:decodeURIComponent(escape(atob(txt))));
+    if(!rec.key)throw new Error('형식이 맞지 않습니다');
+    Store.saveLocalCopy(rec);
+    T.all=T.all.filter(function(r){return r.key!==rec.key;});
+    T.all.push(rec);
+    st.className='status ok';
+    st.textContent=rec.cls+'반 '+rec.grp+'모둠 자료를 넣었습니다.';
+    renderTeacher();
+  }catch(e){
+    st.className='status err';
+    st.textContent='코드를 읽지 못했습니다. 전체를 빠짐없이 붙여 넣었는지 확인해 주세요.';
+  }
+});
+
+/* ============================================================
+   starfield · tabs
+   ============================================================ */
+(function(){
+  var out='';
+  for(var i=0;i<90;i++){
+    out+='<circle cx="'+(Math.random()*100).toFixed(2)+'%" cy="'+
+      (Math.random()*100).toFixed(2)+'%" r="'+(Math.random()*1.3+.3).toFixed(2)+
+      '" fill="#fff" opacity="'+(Math.random()*.55+.12).toFixed(2)+'"/>';
+  }
+  document.getElementById('stars').innerHTML=out;
+})();
+(function(){
+  var arr=[['t1','p1'],['t2','p2'],['t3','p3'],['t4','p4']];
+  arr.forEach(function(pair){
+    document.getElementById(pair[0]).addEventListener('click',function(){
+      arr.forEach(function(p){
+        var sel=p[0]===pair[0];
+        document.getElementById(p[0]).setAttribute('aria-selected',sel?'true':'false');
+        document.getElementById(p[1]).hidden=!sel;
+      });
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+})();
+
+/* ============================================================
+   PANEL 2 — 등급 자
+   ============================================================ */
+var STARS=[
+  {n:'시리우스',m:-1.5,M:1.4,d:2.6,c:'#9DB4FF',col:'청백색',
+   note:'밤하늘에서 가장 밝게 보이는 별입니다. 아주 가까이 있어서 밝게 보이는 것이지, 실제로 가장 밝은 별은 아닙니다.'},
+  {n:'리겔',m:0.1,M:-7.0,d:260,c:'#9DB4FF',col:'청백색',
+   note:'오리온자리의 발에 해당하는 별입니다. 아주 멀리 있는데도 밝게 보일 만큼 실제 밝기가 큽니다.'},
+  {n:'베가',m:0.0,M:0.6,d:7.7,c:'#E8EEFF',col:'흰색',
+   note:'거문고자리의 직녀성입니다. 10 pc보다 가까이 있어서 겉보기 등급이 절대 등급보다 작습니다.'},
+  {n:'데네브',m:1.3,M:-7.2,d:800,c:'#E8EEFF',col:'흰색',
+   note:'여기 있는 별 중 실제로 가장 밝은 별입니다. 너무 멀리 있어서 겉보기로는 평범해 보입니다.'},
+  {n:'북극성',m:2.0,M:-3.6,d:133,c:'#FFD97A',col:'노란색',
+   note:'북쪽 하늘의 기준이 되는 별입니다. 눈에는 그리 밝지 않지만 실제 밝기는 태양보다 훨씬 큽니다.'},
+  {n:'태양',m:-26.8,M:4.8,d:0.0000048,c:'#FFD97A',col:'노란색',
+   note:'겉보기 등급이 압도적으로 작습니다. 실제로 밝아서가 아니라, 지구에서 가장 가까운 별이기 때문입니다.'},
+  {n:'알데바란',m:0.9,M:-0.7,d:20,c:'#FFB067',col:'주황색',
+   note:'황소자리의 눈에 해당하는 별입니다.'},
+  {n:'아르크투루스',m:-0.1,M:-0.3,d:11,c:'#FFB067',col:'주황색',
+   note:'목동자리의 별로, 10 pc 부근에 있어서 겉보기 등급과 절대 등급이 거의 같습니다.'},
+  {n:'안타레스',m:1.0,M:-5.3,d:170,c:'#FF7A59',col:'붉은색',
+   note:'전갈자리의 심장으로 불리는 붉은 별입니다.'}
+];
+var magMode='app',selected=null,RMIN=-8,RMAX=6;
+
+function magOf(st,mode){return mode==='abs'?st.M:st.m;}
+
+/* 라벨이 겹치지 않도록 층을 나눕니다. */
+function assignTiers(items,tiers){
+  var right=[],i;
+  for(i=0;i<tiers;i++)right.push(-9999);
+  items.forEach(function(p){
+    var ti=tiers-1;
+    for(var k=0;k<tiers;k++){
+      if(p.x-p.w/2>right[k]+6){ti=k;break;}
+    }
+    right[ti]=p.x+p.w/2;
+    p.tier=ti;
+  });
+}
+
+function drawRuler(){
+  var svg=document.getElementById('ruler');
+  while(svg.childNodes.length>1)svg.removeChild(svg.lastChild);
+  if(magMode==='cmp')drawCompare(svg);
+  else drawSingle(svg);
+}
+
+/* ---------- 한 축만 보기 ---------- */
+function drawSingle(svg){
+  svg.setAttribute('viewBox','0 0 640 250');
+  var W=640,PL=34,PR=34,iw=W-PL-PR,AY=180;
+  function X(mag){return PL+Math.max(0,Math.min(1,(mag-RMIN)/(RMAX-RMIN)))*iw;}
+
+  svg.appendChild(el('line',{x1:PL,y1:AY,x2:PL+iw,y2:AY,
+    stroke:'rgba(255,255,255,.3)','stroke-width':1.5}));
+  for(var mg=RMIN;mg<=RMAX;mg+=2){
+    svg.appendChild(el('line',{x1:X(mg),y1:AY,x2:X(mg),y2:AY+7,
+      stroke:'rgba(255,255,255,.3)','stroke-width':1.5}));
+    svg.appendChild(el('text',{x:X(mg),y:AY+24,'text-anchor':'middle',fill:'#98A2C8',
+      'font-size':'12','font-family':'IBM Plex Mono, monospace'},String(mg)));
+  }
+  svg.appendChild(el('text',{x:PL,y:AY+46,'text-anchor':'start',fill:'#FFC857',
+    'font-size':'12.5','font-family':'Noto Sans KR, sans-serif','font-weight':'700'},'← 밝다'));
+  svg.appendChild(el('text',{x:PL+iw,y:AY+46,'text-anchor':'end',fill:'#98A2C8',
+    'font-size':'12.5','font-family':'Noto Sans KR, sans-serif','font-weight':'700'},'어둡다 →'));
+
+  var placed=STARS.map(function(st){
+    var mag=magOf(st,magMode);
+    return {s:st,mag:mag,off:mag<RMIN,x:X(mag),w:st.n.length*11+10};
+  }).sort(function(a,b){return a.x-b.x;});
+  assignTiers(placed,5);
+
+  placed.forEach(function(p){
+    var r=Math.max(4,Math.min(15,4+(6-p.mag)*1.05)),
+        ly=AY-26-p.tier*20,g=el('g',{});
+    g.appendChild(el('line',{'class':'star-tick',x1:p.x,y1:AY-6,x2:p.x,y2:ly+5,
+      stroke:'rgba(255,255,255,.18)','stroke-width':1}));
+    g.appendChild(el('circle',{'class':'star-dot',cx:p.x,cy:AY,r:r+5,
+      fill:p.s.c,opacity:p.off?.12:.2}));
+    g.appendChild(el('circle',{'class':'star-dot',cx:p.x,cy:AY,r:r,fill:p.s.c,
+      opacity:p.off?.45:1,'stroke-width':selected===p.s.n?2.5:0,stroke:'#FFC857'}));
+    g.appendChild(el('text',{'class':'star-lbl',x:p.x,y:ly,'text-anchor':'middle',
+      fill:selected===p.s.n?'#FFC857':'#E8EEFF','font-size':'11.5',
+      'font-family':'Noto Sans KR, sans-serif',
+      'font-weight':selected===p.s.n?'700':'400',opacity:p.off?.55:1},
+      p.off?(p.s.n+' ◀'):p.s.n));
+    g.style.cursor='pointer';
+    g.addEventListener('click',function(){selected=p.s.n;drawRuler();showDetail(p.s);});
+    svg.appendChild(g);
+  });
+}
+
+/* ---------- 두 축을 위아래로 놓고 비교 ---------- */
+function drawCompare(svg){
+  svg.setAttribute('viewBox','0 0 640 372');
+  var W=640,PL=56,PR=28,iw=W-PL-PR,AY1=124,AY2=252;
+  function X(mag){return PL+Math.max(0,Math.min(1,(mag-RMIN)/(RMAX-RMIN)))*iw;}
+
+  /* 눈금선과 숫자 (가운데 한 번만) */
+  for(var mg=RMIN;mg<=RMAX;mg+=2){
+    var gx=X(mg);
+    svg.appendChild(el('line',{x1:gx,y1:AY1,x2:gx,y2:AY1+58,
+      stroke:'rgba(255,255,255,.07)','stroke-width':1}));
+    svg.appendChild(el('line',{x1:gx,y1:AY2-52,x2:gx,y2:AY2,
+      stroke:'rgba(255,255,255,.07)','stroke-width':1}));
+    svg.appendChild(el('text',{x:gx,y:AY1+78,'text-anchor':'middle',fill:'#6E779E',
+      'font-size':'11','font-family':'IBM Plex Mono, monospace'},String(mg)));
+  }
+
+  /* 두 축 */
+  [[AY1,'겉보기'],[AY2,'절대']].forEach(function(pair){
+    svg.appendChild(el('line',{x1:PL,y1:pair[0],x2:PL+iw,y2:pair[0],
+      stroke:'rgba(255,255,255,.3)','stroke-width':1.5}));
+    svg.appendChild(el('text',{x:PL-11,y:pair[0]+4,'text-anchor':'end',fill:'#FFC857',
+      'font-size':'11.5','font-family':'Noto Sans KR, sans-serif','font-weight':'700'},pair[1]));
+  });
+
+  svg.appendChild(el('text',{x:PL,y:356,'text-anchor':'start',fill:'#FFC857',
+    'font-size':'12.5','font-family':'Noto Sans KR, sans-serif','font-weight':'700'},'← 밝다'));
+  svg.appendChild(el('text',{x:PL+iw,y:356,'text-anchor':'end',fill:'#98A2C8',
+    'font-size':'12.5','font-family':'Noto Sans KR, sans-serif','font-weight':'700'},'어둡다 →'));
+
+  var info=STARS.map(function(st){
+    return {s:st,xa:X(st.m),xb:X(st.M),off:st.m<RMIN,sel:selected===st.n};
+  });
+
+  /* 잇는 선을 먼저 (점 뒤에 깔리도록) */
+  info.forEach(function(p){
+    svg.appendChild(el('line',{x1:p.xa,y1:AY1+9,x2:p.xb,y2:AY2-9,
+      stroke:p.sel?'#FFC857':p.s.c,'stroke-width':p.sel?2.6:1.4,
+      opacity:p.sel?.95:(p.off?.28:.4)}));
+  });
+
+  /* 위쪽 = 겉보기, 아래쪽 = 절대 */
+  [{y:AY1,key:'m',up:true},{y:AY2,key:'M',up:false}].forEach(function(ax){
+    var placed=STARS.map(function(st){
+      var mag=st[ax.key];
+      return {s:st,mag:mag,off:mag<RMIN,x:X(mag),w:st.n.length*10.5+8};
+    }).sort(function(a,b){return a.x-b.x;});
+    assignTiers(placed,ax.up?5:4);
+
+    placed.forEach(function(p){
+      var r=Math.max(3.5,Math.min(12,3.5+(6-p.mag)*0.9)),
+          ly=ax.up?(AY1-24-p.tier*18):(AY2+28+p.tier*18),
+          g=el('g',{});
+      g.appendChild(el('line',{x1:p.x,y1:ax.up?AY1-6:AY2+6,x2:p.x,y2:ax.up?ly+5:ly-9,
+        stroke:'rgba(255,255,255,.16)','stroke-width':1}));
+      g.appendChild(el('circle',{cx:p.x,cy:ax.y,r:r+4,fill:p.s.c,opacity:p.off?.1:.18}));
+      g.appendChild(el('circle',{cx:p.x,cy:ax.y,r:r,fill:p.s.c,opacity:p.off?.45:1,
+        'stroke-width':selected===p.s.n?2.5:0,stroke:'#FFC857'}));
+      g.appendChild(el('text',{x:p.x,y:ly,'text-anchor':'middle',
+        fill:selected===p.s.n?'#FFC857':'#E8EEFF','font-size':'11',
+        'font-family':'Noto Sans KR, sans-serif',
+        'font-weight':selected===p.s.n?'700':'400',opacity:p.off?.55:1},
+        (p.off&&ax.up)?(p.s.n+' ◀'):p.s.n));
+      g.style.cursor='pointer';
+      g.addEventListener('click',function(){selected=p.s.n;drawRuler();showDetail(p.s);});
+      svg.appendChild(g);
+    });
+  });
+}
+
+function showDetail(st){
+  var diff=st.m-st.M,
+      where=Math.abs(diff)<0.2?'10 pc와 거의 같은 거리에 있습니다'
+           :(diff>0?'10 pc보다 멀리 있습니다':'10 pc보다 가까이 있습니다');
+  document.getElementById('starDetail').innerHTML=
+    '<p class="name">'+st.n+'</p><dl>'+
+    '<dt>겉보기 등급</dt><dd>'+st.m.toFixed(1)+'</dd>'+
+    '<dt>절대 등급</dt><dd>'+st.M.toFixed(1)+'</dd>'+
+    '<dt>거리</dt><dd>'+(st.d<0.001?'0.0000048 pc':st.d+' pc')+'</dd>'+
+    '<dt>색</dt><dd style="color:'+st.c+'">'+st.col+'</dd></dl>'+
+    '<p>겉보기 등급에서 절대 등급을 빼면 '+diff.toFixed(1)+
+    '입니다. 이 값이 0보다 크면 10 pc보다 멀리, 0보다 작으면 10 pc보다 가까이 있다는 뜻입니다. 즉 '+
+    st.n+'은(는) '+where+'.<br>'+st.note+'</p>';
+}
+
+var RULER_LEDE={
+  app:'지구에서 <strong style="color:var(--gold)">눈에 보이는 대로</strong>의 밝기입니다. 별까지의 거리가 제각각이므로 이 순서는 실제 밝기 순서가 아닙니다. 별을 눌러 자세히 볼 수 있습니다.',
+  abs:'모든 별을 <strong style="color:var(--gold)">10 pc</strong>라는 같은 거리에 옮겨 놓았을 때의 밝기입니다. 거리의 영향이 사라지고 실제 밝기만 남습니다. 데네브와 리겔이 앞으로 나오는 것을 보세요.',
+  cmp:'위는 <strong style="color:var(--gold)">겉보기 등급</strong>, 아래는 <strong style="color:var(--gold)">절대 등급</strong>입니다. 같은 별을 선으로 이었습니다. 선이 <strong>오른쪽으로 기울면 가까운 별</strong>, <strong>왼쪽으로 기울면 먼 별</strong>입니다. 선이 곧게 서 있으면 10 pc 부근에 있는 별입니다.'
+};
+function setMagMode(mode){
+  magMode=mode;
+  document.getElementById('modeApp').setAttribute('aria-pressed',mode==='app'?'true':'false');
+  document.getElementById('modeAbs').setAttribute('aria-pressed',mode==='abs'?'true':'false');
+  document.getElementById('modeCmp').setAttribute('aria-pressed',mode==='cmp'?'true':'false');
+  document.getElementById('rulerLede').innerHTML=RULER_LEDE[mode];
+  drawRuler();
+}
+document.getElementById('modeApp').addEventListener('click',function(){setMagMode('app');});
+document.getElementById('modeAbs').addEventListener('click',function(){setMagMode('abs');});
+document.getElementById('modeCmp').addEventListener('click',function(){setMagMode('cmp');});
+selected='시리우스';
+setMagMode('app');
+showDetail(STARS[0]);
+
+var RATIO=Math.pow(100,0.2);
+function updMag(){
+  var a=parseFloat(document.getElementById('magA').value),
+      b=parseFloat(document.getElementById('magB').value),
+      out=document.getElementById('magOut'),cap=document.getElementById('magCap');
+  if(!isFinite(a)||!isFinite(b)){
+    out.textContent='—';cap.textContent='두 등급을 모두 넣어 주세요';return;
+  }
+  var diff=b-a;
+  if(Math.abs(diff)<0.001){
+    out.textContent='똑같이 밝다';cap.textContent='두 별의 등급이 같으므로 밝기도 같습니다';return;
+  }
+  var times=Math.pow(RATIO,Math.abs(diff)),
+      txt=times>=1000?Math.round(times).toLocaleString('ko-KR')
+        :times>=100?String(Math.round(times))
+        :times>=10?times.toFixed(0):times.toFixed(1);
+  out.textContent='약 '+txt+'배';
+  cap.textContent=(diff>0?a:b)+'등급 별이 '+(diff>0?b:a)+'등급 별보다 밝습니다 (등급 차 '+
+    Math.abs(diff).toFixed(1)+')';
+}
+document.getElementById('magA').addEventListener('input',updMag);
+document.getElementById('magB').addEventListener('input',updMag);
+updMag();
+
+function drawSpread(){
+  var k=parseInt(document.getElementById('distMul').value,10),
+      svg=document.getElementById('spread');
+  while(svg.childNodes.length>1)svg.removeChild(svg.lastChild);
+
+  var SX=46,FL=372,SIDE=194,FR=FL+SIDE,CY=170,HH=SIDE/2,
+      xr=SX+(FL-SX)/k,          /* 거리 1배 판이 놓이는 자리 */
+      nSide=SIDE/k, nHH=HH/k;
+
+  /* 빛다발 */
+  svg.appendChild(el('polygon',{
+    points:SX+','+CY+' '+FL+','+(CY-HH)+' '+FL+','+(CY+HH),
+    fill:'#FFC857',opacity:'.05'}));
+  [CY-HH,CY+HH].forEach(function(y){
+    svg.appendChild(el('line',{x1:SX,y1:CY,x2:FL,y2:y,
+      stroke:'#FFC857','stroke-width':1.2,opacity:'.35'}));
+  });
+
+  /* 먼 판 — k×k 칸으로 나뉩니다 */
+  var cell=SIDE/k, op=Math.max(0.10,1/(k*k));
+  for(var i=0;i<k;i++){
+    for(var j=0;j<k;j++){
+      svg.appendChild(el('rect',{x:FL+i*cell,y:CY-HH+j*cell,width:cell,height:cell,
+        fill:'#FFD979',opacity:String(op),
+        stroke:'#FFC857','stroke-width':k>6?0.8:1.3,'stroke-opacity':k>6?'.5':'.75'}));
+    }
+  }
+
+  /* 가까운 판 — 언제나 한 칸 */
+  if(k>1){
+    svg.appendChild(el('rect',{x:xr,y:CY-nHH,width:nSide,height:nSide,
+      fill:'#FFE9A8',opacity:'.95',stroke:'#FFF6D8','stroke-width':1.4}));
+  }
+
+  /* 광원 */
+  svg.appendChild(el('circle',{cx:SX,cy:CY,r:15,fill:'#FFC857',opacity:'.18'}));
+  svg.appendChild(el('circle',{cx:SX,cy:CY,r:7,fill:'#FFE9A8'}));
+  svg.appendChild(el('text',{x:SX,y:CY+33,'text-anchor':'middle',fill:'#98A2C8',
+    'font-size':'11.5','font-family':'Noto Sans KR, sans-serif'},'광원'));
+
+  function tag(x,y,l1,l2,anchor){
+    svg.appendChild(el('text',{x:x,y:y,'text-anchor':anchor||'middle',fill:'#FFC857',
+      'font-size':'12.5','font-family':'Noto Sans KR, sans-serif','font-weight':'700'},l1));
+    svg.appendChild(el('text',{x:x,y:y+17,'text-anchor':anchor||'middle',fill:'#B9C2E4',
+      'font-size':'11.5','font-family':'Noto Sans KR, sans-serif'},l2));
+  }
+  if(k>1)tag(xr+nSide/2, CY-nHH-32, '거리 1배', '한 칸 · 밝기 1');
+  tag(FL+SIDE/2, CY-HH-32, '거리 '+k+'배',
+      k===1?'한 칸 · 밝기 1':(k*k)+'칸 · 밝기 1/'+(k*k));
+
+  /* 아래 거리 눈금 */
+  var BY=306;
+  svg.appendChild(el('line',{x1:SX,y1:BY,x2:FL,y2:BY,
+    stroke:'rgba(255,255,255,.22)','stroke-width':1}));
+  function mark(x,txt){
+    svg.appendChild(el('line',{x1:x,y1:BY-5,x2:x,y2:BY+5,
+      stroke:'rgba(255,255,255,.35)','stroke-width':1.5}));
+    if(txt)svg.appendChild(el('text',{x:x,y:BY+22,'text-anchor':'middle',fill:'#98A2C8',
+      'font-size':'11.5','font-family':'IBM Plex Mono, monospace'},txt));
+  }
+  mark(SX,null);
+  if(k>1)mark(xr,'1배');
+  mark(FL,k+'배');
+
+  /* 숫자 요약 */
+  var dm=5*Math.log(k)/Math.LN10;
+  document.getElementById('distOut').textContent=k+'배';
+  document.getElementById('sArea').textContent=k===1?'그대로':(k*k)+'배';
+  document.getElementById('sBright').textContent=k===1?'그대로':'1/'+(k*k)+'배';
+  document.getElementById('sMag').textContent=k===1?'그대로':'+'+dm.toFixed(1)+'등급';
+}
+document.getElementById('distMul').addEventListener('input',drawSpread);
+drawSpread();
+
+/* ============================================================
+   PANEL 3 — 확인 문제
+   ============================================================ */
+var QUIZ=[
+  {q:'광원으로부터의 거리가 3배 멀어지면 빛의 세기는 어떻게 될까요?',
+   o:['1/3배','1/6배','1/9배','1/12배'],a:2,
+   w:'빛은 거리의 제곱에 반비례합니다. 거리가 3배가 되면 같은 양의 빛이 3×3=9배 넓은 면에 퍼지므로 1/9배가 됩니다.'},
+  {q:'1등급인 별은 6등급인 별보다 약 몇 배 밝을까요?',
+   o:['약 2.5배','약 25배','약 50배','약 100배'],a:3,
+   w:'등급이 1 차이 날 때마다 밝기는 약 2.5배씩 달라집니다. 5등급 차이는 2.5를 다섯 번 곱한 것이므로 정확히 100배가 됩니다.'},
+  {q:'겉보기 등급에 대한 설명으로 옳은 것은 무엇일까요?',
+   o:['등급이 클수록 밝게 보인다','등급이 작을수록 밝게 보인다',
+      '거리와 상관없이 실제 밝기를 나타낸다','음수 등급은 존재하지 않는다'],a:1,
+   w:'등급은 작을수록 밝습니다. 태양의 겉보기 등급은 -26.8로 가장 작고, 가장 밝게 보입니다.'},
+  {q:'절대 등급은 별이 얼마나 떨어져 있다고 가정했을 때의 밝기일까요?',
+   o:['1 pc','10 pc','100 pc','1000 pc'],a:1,
+   w:'모든 별을 10 pc라는 같은 거리에 옮겨 놓았다고 가정하고 정한 등급이 절대 등급입니다. 거리의 영향을 없애서 실제 밝기를 비교할 수 있습니다.'},
+  {q:'태양의 겉보기 등급이 -26.8로 가장 작은 까닭은 무엇일까요?',
+   o:['우주에서 실제로 가장 밝은 별이기 때문','지구에서 가장 가까운 별이기 때문',
+      '표면 온도가 가장 높기 때문','가장 큰 별이기 때문'],a:1,
+   w:'태양의 절대 등급은 4.8로 별들 사이에서는 평범한 편입니다. 겉보기 등급이 압도적으로 작은 것은 다른 별들보다 훨씬 가까이 있기 때문입니다.'},
+  {q:'데네브는 겉보기 등급 1.3, 절대 등급 -7.2입니다. 시리우스는 겉보기 등급 -1.5, 절대 등급 1.4입니다. 실제로 더 밝은 별은 어느 쪽일까요?',
+   o:['시리우스. 겉보기 등급이 더 작으니까','데네브. 절대 등급이 더 작으니까',
+      '둘의 실제 밝기는 같다','주어진 값만으로는 알 수 없다'],a:1,
+   w:'실제 밝기를 비교할 때는 절대 등급을 봅니다. 데네브의 절대 등급 -7.2가 시리우스의 1.4보다 훨씬 작으므로 데네브가 실제로 더 밝습니다. 시리우스가 더 밝게 보이는 것은 훨씬 가까이 있기 때문입니다.',
+   adv:true}
+];
+(function(){
+  var box=document.getElementById('quiz'),answered=0,correct=0;
+  QUIZ.forEach(function(item,i){
+    var d=document.createElement('div');
+    d.className='q';
+    d.innerHTML='<p class="qnum">문제 '+(i+1)+(item.adv?'<span class="badge">심화</span>':'')+
+      '</p><p class="qtext">'+item.q+'</p><div class="opts">'+
+      item.o.map(function(t,k){return '<button data-k="'+k+'">'+t+'</button>';}).join('')+'</div>';
+    var wrap=d.querySelector('.opts');
+    wrap.addEventListener('click',function(e){
+      var btn=e.target.closest('button');
+      if(!btn||wrap.getAttribute('data-done'))return;
+      wrap.setAttribute('data-done','1');
+      var k=parseInt(btn.getAttribute('data-k'),10),ok=k===item.a;
+      Array.prototype.forEach.call(wrap.children,function(b,idx){
+        b.disabled=true;
+        if(idx===item.a)b.classList.add('right');
+        else if(idx===k)b.classList.add('wrong');
+      });
+      var why=document.createElement('p');
+      why.className='why';
+      why.textContent=(ok?'맞았습니다. ':'')+item.w;
+      d.appendChild(why);
+      answered++;if(ok)correct++;
+      if(answered===QUIZ.length){
+        document.getElementById('scoreBox').innerHTML='<div class="score"><span class="big">'+
+          correct+' / '+QUIZ.length+'</span>'+
+          (correct===QUIZ.length?'전부 맞혔습니다.'
+           :correct>=QUIZ.length-2?'거의 다 이해했습니다.'
+           :'틀린 문제의 설명을 한 번 더 읽어 보세요.')+'</div>';
+      }
+    });
+    box.appendChild(d);
+  });
+})();
+
+/* 시작 점검 — 화면이 제대로 만들어졌는지 확인합니다. */
+(function(){
+  var ok = document.getElementById('clsChips').children.length > 0 &&
+           document.getElementById('rows').children.length > 0 &&
+           document.getElementById('quiz').children.length > 0;
+  if(!ok && window.__stellarError){
+    window.__stellarError('화면을 다 만들지 못했습니다. 브라우저를 새로 고침(Ctrl+F5)해 주세요.');
+  }
+})();
+
+})();
+</script>
+</body>
+</html>
